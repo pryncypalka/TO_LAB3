@@ -1,9 +1,12 @@
 from math import atan2
+from math import cos, sin, radians
 
 class Vector2D:
-    def __init__(self, x, y):
-        self._x = x
-        self._y = y
+    def __init__(self, angle, length):
+        self._length = length
+        self._angle = angle
+        self._x = length * cos(radians(angle))
+        self._y = length * sin(radians(angle))
 
     def getComponents(self):
         return [self._x, self._y]
