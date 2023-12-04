@@ -7,3 +7,6 @@ class NoSymptoms(StateIndividual):
 
     def get_color(self):
         return (255, 192, 203)
+
+    def get_name(self):
+        return "NoSymptoms"

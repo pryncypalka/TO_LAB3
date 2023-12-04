@@ -31,6 +31,8 @@ class Healthy(StateIndividual):
 
     def get_color(self):
         return (0, 255, 0)
+    def get_name(self):
+        return "Healthy"
 
 
 

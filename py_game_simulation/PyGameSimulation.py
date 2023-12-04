@@ -83,6 +83,7 @@ class PyGameSimulation:
 
 
     def run(self):
+        frame_count = 0
         running = True
         self.simulation_paused = True
         while running:
@@ -106,7 +107,7 @@ class PyGameSimulation:
                         self.population.generate_individuals(population_difference, self.config.rate_symptom,
                                                              self.config.rate_no_symptom, self.config.rate_resistant)
 
-                    self.infection.infect(self.population)
+                self.infection.infect(self.population)
 
 
 

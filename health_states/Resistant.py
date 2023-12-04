@@ -7,3 +7,6 @@ class Resistant(StateIndividual):
 
     def get_color(self):
         return (0, 0, 255)
+
+    def get_name(self):
+        return "Resistant"

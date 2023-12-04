@@ -54,6 +54,9 @@ class Individual:
     def get_health_state(self):
         return self._health_state
 
+
+
+
     def get_x(self):
         return self._x
     def get_y(self):

@@ -36,10 +36,9 @@ class Infection:
             # else:
             #     self.list_resistant.append(i)
 
-            if i.get_health_state() == Healthy.Healthy:
-                print('działa')
+            if isinstance(i.get_health_state(), Healthy.Healthy):
                 for other in population.get_individuals():
-                    if self.check_distance(i, other) and i != other and other.get_health_state() == HasSymptoms.HasSymptoms:
+                    if self.check_distance(i, other) and i != other and isinstance(other.get_health_state(), HasSymptoms.HasSymptoms):
                         self.set_random_state(i)
                         print("wywołano")
 
