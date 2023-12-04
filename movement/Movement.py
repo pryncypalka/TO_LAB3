@@ -1,24 +1,53 @@
 from movement.Vector2D import Vector2D
-from random import uniform
+from random import uniform, random
 
 class Movement:
-    def __init__(self, individuals, frames_per_second=25, max_speed=2.5):
-        self.individuals = individuals
-        self.frames_per_second = frames_per_second
-        self.max_speed = max_speed
+    config = None
 
-    def move_individuals(self):
-        for individual in self.individuals:
-            angle = uniform(0, 360)  # Losowy kierunek w stopniach
-            length = uniform(0, self.max_speed / self.frames_per_second) * 100
+    @classmethod
+    def set_config(cls, config):
+        cls.config = config
 
-            # Tworzenie wektora przemieszczenia
-            displacement_vector = Vector2D(angle, length)
+    def __init__(self, population):
+        self.frames_per_second = self.config.frames_per_second
+        self.max_speed = self.config.speed_limit
+        self.population = population
+        self._height = self.config.n * self.config.pixels_per_meters
+        self._width = self.config.m * self.config.pixels_per_meters
 
-            # Zapisanie poprzedniego stanu przed ruchem
-            individual.create_memento()
+    def move_individual(self, individual):
+        angle = uniform(0, 360)  # Losowy kierunek w stopniach
+        length = uniform((self.max_speed / self.frames_per_second/1.5), self.max_speed / self.frames_per_second) * self.config.pixels_per_meters  # Losowa długość wektora przemieszczenia
 
-            # Zmiana pozycji z użyciem wektora przemieszczenia
-            individual.change_position(displacement_vector.getComponents()[0], displacement_vector.getComponents()[1])
+
+
+        # Tworzenie wektora przemieszczenia
+        displacement_vector = Vector2D(angle, length)
+
+        # Zapisanie poprzedniego stanu przed ruchem
+        individual.create_memento()
+
+        # Przesunięcie
+        x = individual.get_x()
+        y = individual.get_y()
+
+        x += displacement_vector.getComponents()[0]
+        y += displacement_vector.getComponents()[1]
+        if x > self._width or x < 0:
+            if random() < 0.5:
+                x -= 2 * x
+            else:
+                return self.population.delete_invidual(individual)
+
+        if y > self._height or y < 0:
+            if random() < 0.5:
+                y -= 2 * y
+            else:
+                return self.population.delete_invidual(individual)
+
+        individual.change_position(x,y)
+
+
+
 
 

@@ -1,21 +1,35 @@
 from py_game_simulation.PyGameSimulation import PyGameSimulation
+from individuals.Individual import Individual
+from movement.Movement import Movement
+from infection_process.Infection import Infection
+from individuals.Population import Population
 import pygame
+from py_game_simulation.AppConfig import AppConfig
 
 def main():
 
     # Parametry symulacji
-    n = 20  # liczba wierszy obszaru
-    m = 20  # liczba kolumn obszaru
-    speed_limit = 2.5 # górny limit szybkości
-    infection_rate = 0.1  # prawdopodobieństwo zakażenia
-    initial_population_size = 100
+    config = AppConfig()
+    PyGameSimulation.set_config(config)
+    Individual.set_config(config)
+    Movement.set_config(config)
+    Infection.set_config(config)
+    Population.set_config(config)
+
+
+
+
+
+
+
+
+
+
 
     # Inicjalizacja Pygame
     pygame.init()
-
     # Inicjalizacja symulacji
-    simulation = PyGameSimulation(n, m, speed_limit, infection_rate, initial_population_size)
-
+    simulation = PyGameSimulation()
     # Uruchomienie symulacji
     simulation.run()
 
