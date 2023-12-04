@@ -25,7 +25,7 @@ class Population:
         threshold_1 = rate_symptom
         for i in range(number_of_individuals):
             infection_probability = random.random()
-            print(infection_probability)
+
 
             if infection_probability < threshold_1:
                 health_state = HasSymptoms.HasSymptoms()

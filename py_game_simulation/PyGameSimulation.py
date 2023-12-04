@@ -20,6 +20,7 @@ class PyGameSimulation:
         self.simulation_paused = False
         self.population = Population()
         self.movement = Movement(self.population)
+        self.infection = Infection()
 
 
 
@@ -104,13 +105,15 @@ class PyGameSimulation:
                     if population_difference > 0:
                         self.population.generate_individuals(population_difference, self.config.rate_symptom,
                                                              self.config.rate_no_symptom, self.config.rate_resistant)
-                    Infection(self.population).infect()
+
+                    self.infection.infect(self.population)
+
 
 
 
 
             pygame.display.flip()
-            self.clock.tick(25)  # 25 kroków na sekundę
+            self.clock.tick(self.config.frames_per_second)  # 25 kroków na sekundę
 
 
 
