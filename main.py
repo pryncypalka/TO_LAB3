@@ -6,12 +6,9 @@ def main():
     # Parametry symulacji
     n = 20  # liczba wierszy obszaru
     m = 20  # liczba kolumn obszaru
-    speed_limit = 2.5  # górny limit szybkości
+    speed_limit = 2.5 # górny limit szybkości
     infection_rate = 0.1  # prawdopodobieństwo zakażenia
     initial_population_size = 100
-
-    # Parametry wizualizacji
-    cell_size = 30
 
     # Inicjalizacja Pygame
     pygame.init()

@@ -1,22 +1,30 @@
 import pygame
 import sys
 import random
+from individuals.Individual import Individual
 from movement.Vector2D import Vector2D
+from movement.Movement import Movement
 class PyGameSimulation:
-    def __init__(self, n, m, speed_limit, infection_rate, initial_population_size, cell_size = 5):
+    def __init__(self, n, m, speed_limit, infection_rate, initial_population_size, cell_size = 30):
         self.n = n
         self.m = m
         self.speed_limit = speed_limit
         self.infection_rate = infection_rate
         self.initial_population_size = initial_population_size
-        self.width, self.height = m * cell_size, n * cell_size
+        self.width, self.height = 500, 500
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.clock = pygame.time.Clock()
         self.population = self.generate_population()
 
     def generate_population(self):
-        return [Person(random.uniform(0, self.width), random.uniform(0, self.height),
-                       random.uniform(0, self.speed_limit)) for _ in range(self.initial_population_size)]
+        return [Individual(random.uniform(0, self.width), random.uniform(0, self.height)) for _ in range(self.initial_population_size)]
+
+    def draw(self):
+        for Individual in self.population:
+            color = (255, 0, 0)
+            pygame.draw.circle(self.screen, color, (Individual.get_x(), Individual.get_y()), 2)
+    def create_movement(self):
+        return Movement(self.population)
 
     def run(self):
         running = True
@@ -27,10 +35,8 @@ class PyGameSimulation:
 
             self.screen.fill((255, 255, 255))
 
-            for person in self.population:
-                person.move()
-                person.infect()
-                person.draw()
+            self.draw()
+            self.create_movement().move_individuals()
 
             pygame.display.flip()
             self.clock.tick(25)  # 25 kroków na sekundę
