@@ -9,17 +9,26 @@ class AppConfig:
         # Parametry symulacji
         self.n = 20  # liczba wierszy obszaru
         self.m = 30  # liczba kolumn obszaru
-        self.speed_limit = 5  # górny limit szybkości
+        self.speed_limit = 2.5  # górny limit szybkości
         self.initial_population_size = 200
         self.pixels_per_meters = 30
         self.frames_per_second = 25
         self.gap_for_buttons = 80
 
-        self.rate_symptom = 0.1
-        self.rate_no_symptom = 0.1
+        self.rate_symptom = 0.08
+        self.rate_no_symptom = 0.02
+        #2 przypadek 0.1
         self.rate_resistant = 0.0
 
-        self.infection_radius = 3 * self.pixels_per_meters
+        self.infection_radius = 2 * self.pixels_per_meters
         self.infection_points = 3 * self.frames_per_second
+
+        self.initial_rate_symptom = 0.0
+        self.initial_rate_no_symptom = 0.0
+
+
+        #2 przypadek 0.1
+        self.initial_rate_resistant = 0.0
+
 
 

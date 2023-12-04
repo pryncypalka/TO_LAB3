@@ -83,7 +83,7 @@ class PyGameSimulation:
 
 
     def run(self):
-        frame_count = 0
+
         running = True
         self.simulation_paused = True
         while running:

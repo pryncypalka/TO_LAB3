@@ -8,7 +8,7 @@ class Population:
         self._individuals = []
         self.height = self.config.n * self.config.pixels_per_meters
         self.width = self.config.m * self.config.pixels_per_meters
-        self.generate_individuals(self.config.initial_population_size)
+        self.generate_individuals(self.config.initial_population_size, self.config.initial_rate_symptom, self.config.initial_rate_no_symptom, self.config.initial_rate_resistant)
 
     @classmethod
     def set_config(cls, config):
