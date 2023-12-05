@@ -10,7 +10,7 @@ class AppConfig:
         self.n = 20  # liczba wierszy obszaru
         self.m = 30  # liczba kolumn obszaru
         self.speed_limit = 2.5 # górny limit szybkości
-        self.initial_population_size = 2
+        self.initial_population_size = 200
         self.pixels_per_meters = 30
         self.frames_per_second = 25
         self.gap_for_buttons = 80

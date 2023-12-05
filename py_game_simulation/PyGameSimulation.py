@@ -23,6 +23,7 @@ class PyGameSimulation:
         self.movement = Movement(self.population)
         self.infection = Infection()
         self.population_copy = None
+        self.load_enable = False
 
 
 
@@ -60,10 +61,13 @@ class PyGameSimulation:
         self.population_copy = copy.deepcopy(self.population)
         for Individual in self.population.get_individuals():
             Individual.create_memento()
+        self.load_enable = True
 
 
     def load_simulation_state(self):
-        self.population = self.population_copy
+        if not self.load_enable:
+            return
+        self.population = copy.deepcopy(self.population_copy)
         self.movement.set_population(self.population)
         for Individual in self.population.get_individuals():
             Individual.restore_from_memento()
