@@ -1,4 +1,5 @@
-class CareTaker:
+
+class Caretaker:
     def __init__(self):
         self.mementos = []
 
@@ -6,4 +7,13 @@ class CareTaker:
         self.mementos.append(memento)
 
     def get_memento(self, index):
-        return self.mementos[index]
+        if 0 <= index < len(self.mementos):
+            return self.mementos[index]
+        else:
+            print("Nieprawidłowy indeks migawki")
+
+    def get_last_memento(self):
+        if self.mementos:
+            return self.mementos[-1]
+        else:
+            print("Brak migawek")

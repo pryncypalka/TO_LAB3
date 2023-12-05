@@ -5,6 +5,7 @@ from individuals.Individual import Individual
 from movement.Movement import Movement
 from infection_process.Infection import Infection
 from individuals.Population import Population
+import copy
 
 class PyGameSimulation:
     config = None
@@ -21,6 +22,7 @@ class PyGameSimulation:
         self.population = Population()
         self.movement = Movement(self.population)
         self.infection = Infection()
+        self.population_copy = None
 
 
 
@@ -53,6 +55,18 @@ class PyGameSimulation:
         line = pygame.Rect(0, 65, self.width, 2)
         pygame.draw.rect(self.screen, (0, 0, 0), line)
 
+    def save_simulation_state(self):
+        # Zapisz stan symulacji
+        self.population_copy = copy.deepcopy(self.population)
+        for Individual in self.population.get_individuals():
+            Individual.create_memento()
+
+
+    def load_simulation_state(self):
+        self.population = self.population_copy
+        self.movement.set_population(self.population)
+        for Individual in self.population.get_individuals():
+            Individual.restore_from_memento()
 
     def handle_button_clicks(self, event):
         # Obsłuż kliknięcia przycisków

@@ -15,6 +15,9 @@ class Movement:
         self._height = self.config.n * self.config.pixels_per_meters
         self._width = self.config.m * self.config.pixels_per_meters
 
+    def set_population(self, population):
+        self.population = population
+
     def move_individual(self, individual):
         angle = uniform(0, 360)  # Losowy kierunek w stopniach
         length = uniform((self.max_speed / self.frames_per_second/1.5), self.max_speed / self.frames_per_second) * self.config.pixels_per_meters  # Losowa długość wektora przemieszczenia
@@ -24,8 +27,7 @@ class Movement:
         # Tworzenie wektora przemieszczenia
         displacement_vector = Vector2D(angle, length)
 
-        # Zapisanie poprzedniego stanu przed ruchem
-        individual.create_memento()
+
 
         # Przesunięcie
         x = individual.get_x()
