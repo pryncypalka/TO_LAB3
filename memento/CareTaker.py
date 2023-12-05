@@ -15,5 +15,4 @@ class Caretaker:
     def get_last_memento(self):
         if self.mementos:
             return self.mementos[-1]
-        else:
-            print("Brak migawek")
+
